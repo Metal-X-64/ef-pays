@@ -33,12 +33,12 @@ wp_enqueue_script(  'em_plugin_pays_js',
 }
 add_action('wp_enqueue_scripts', 'samuelgiroux_enqueue');
 /* Création de la liste des pays en HTML */
-function creer_bouton(){
-    $categories = get_categories();
+function creer_bouton_pays(){
+    $pays = get_categories();
     $contenu = '';
-        foreach($categories as $elm_categorie) {
-        $nom = $elm_categorie->name;
-        $id = $elm_categorie->term_id;
+        foreach($pays as $elm_pays) {
+        $nom = $elm_pays->name;
+        $id = $elm_pays->term_id;
         $contenu .= '<button id="cat_'.$id.'" class="lien__categorie">'.$nom.'</button>';
         }
         return $contenu;
@@ -46,9 +46,10 @@ function creer_bouton(){
 
 
 function creation_pays(){
-    $contenu = creer_bouton() . '<div class="contenu__restapi"></div>';
+    $contenu = creer_bouton_pays() . '<div class="contenu__restapi"></div>';
     return $contenu;
 }
 
 
-add_shortcode('em_destination', 'creation_destinations');
+add_shortcode('em_pays', 'creation_pays');
+?>
